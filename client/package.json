@@ -9,11 +9,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+<<<<<<< HEAD
+    "graphql": "^14.6.0",
+    "jwt-decode": "^2.2.0",
+    "react": "^16.13.1",
+=======
     "bootstrap": "^5.2.1",
     "graphql": "^14.6.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-bootstrap": "^2.5.0",
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.2"

@@ -9,15 +9,25 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
 
+<<<<<<< HEAD
+// TODO: Add a comment describing the functionality of loadStripe
+// Your comment here
+=======
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
+<<<<<<< HEAD
+  // TODO: Add a comment describing the functionality of the useEffect hook in this instance
+  // Your comment here
+=======
   // We check to see if there is a data object that exists, if so this means that a checkout session was returned from the backend
   // Then we should redirect to the checkout with a reference to our session id
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -26,8 +36,13 @@ const Cart = () => {
     }
   }, [data]);
 
+<<<<<<< HEAD
+  // TODO: Add a comment describing what data we are watching and what work should be preformed if that data changes
+  // Your comment here
+=======
   // If the cart's length or if the dispatch function is updated, check to see if the cart is empty.
   // If so, invoke the getCart method and populate the cart with the existing from the session
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
@@ -51,8 +66,13 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
+<<<<<<< HEAD
+  // TODO: Add a comment describing the functionality of our submitCheckout function.
+  // Your comment here
+=======
   // When the submit checkout method is invoked, loop through each item in the cart
   // Add each item id to the productIds array and then invoke the getCheckout query passing an object containing the id for all our products
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
   function submitCheckout() {
     const productIds = [];
 
@@ -92,7 +112,10 @@ const Cart = () => {
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>
 
+<<<<<<< HEAD
+=======
             {/* Check to see if the user is logged in. If so render a button to check out */}
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
             {Auth.loggedIn() ? (
               <button onClick={submitCheckout}>Checkout</button>
             ) : (

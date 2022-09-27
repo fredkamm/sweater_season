@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // TODO: Add a comment briefly describing the functionality of `useContext`
 // Your comment here
 
@@ -13,6 +14,12 @@ import { useProductReducer } from './reducers';
 
 const StoreContext = createContext();
 
+=======
+import React, { createContext, useContext } from "react";
+import { useProductReducer } from './reducers'
+
+const StoreContext = createContext();
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
 const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
@@ -24,6 +31,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     currentCategory: '',
   });
 
+<<<<<<< HEAD
   // TODO: Add a comment explaining why we passed a `value` attribute to the `Provider`
   // Your comment here
   return <Provider value={[state, dispatch]} {...props} />;
@@ -31,6 +39,11 @@ const StoreProvider = ({ value = [], ...props }) => {
 
 // TODO: Add a comment describing the purpose of our custom `useStoreContext` hook
 // Your comment here
+=======
+  return <Provider value={[state, dispatch]} {...props} />;
+};
+
+>>>>>>> 90f1e5b77fd37f3a3d29e2931bd997433a3d76e5
 const useStoreContext = () => {
   return useContext(StoreContext);
 };

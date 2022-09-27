@@ -24,7 +24,13 @@ const sweaterSchema = new Schema({
     required: true,
     min: 0.99
   },
-  tag: [tag.Schema],
+  tag: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Tag',
+      required: true
+    }
+  ],
   sold: {
     type: Boolean,
     default: false

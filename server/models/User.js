@@ -22,7 +22,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  wishList: [Sweater.Schema],
+  wishList: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: Sweater
+    }
+  ],
   seller: {
     type: Boolean,
     default: false

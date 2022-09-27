@@ -3,14 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
+const Sweater = require('./Sweater');
 
 const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  lastName: {
+  username: {
+
     type: String,
     required: true,
     trim: true
@@ -25,6 +22,17 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  wishList: [Sweater.Schema],
+  seller: {
+    type: Boolean,
+    default: false
+  },
+  shop: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: Sweater
+    }
+  ],
   orders: [Order.schema]
 });
 

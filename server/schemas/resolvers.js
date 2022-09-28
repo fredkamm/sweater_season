@@ -10,7 +10,7 @@ const resolvers = {
     },
     sweaters: async (parent, { tag, name }) => {
       const params = {};
-tag
+
       if (tag) {
         params.tag = tag;
       }

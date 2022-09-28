@@ -7,7 +7,6 @@ const Sweater = require('./Sweater');
 
 const userSchema = new Schema({
   username: {
-
     type: String,
     required: true,
     trim: true

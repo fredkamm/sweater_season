@@ -10,7 +10,6 @@ const resolvers = {
     },
     sweaters: async (parent, { tag, name }) => {
       const params = {};
-
       if (tag) {
         params.tag = tag;
       }
@@ -108,6 +107,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    addSweater: async (parent, { name, creater, description, image, price, tag }, context) => {
+      if (context.user) {
+        return await Sweater.create({ name, creater, description, image, price, tag });
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
@@ -115,10 +121,12 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateSweater: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
+    updateSweater: async (parent, { name, description, price, tag }, context) => {
+      if (context.user) {
+        return await Sweater.findByIdAndUpdate(context.user._id, { name, description, price, tag }, { new: true });
+      }
 
-      return await Sweater.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      throw new AuthenticationError('Not logged in');
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

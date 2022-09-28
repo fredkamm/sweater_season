@@ -11,7 +11,6 @@ const typeDefs = gql`
     name: String
     description: String
     image: String
-    quantity: Int
     price: Float
     tags: [Tag]
   }
@@ -24,9 +23,11 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    username: String
     email: String
+    wishList: [Sweater]
+    seller: Boolean
+    shop: [Sweater]
     orders: [Order]
   }
 
@@ -49,10 +50,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     addOrder(sweaters: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateSweater(_id: ID!, quantity: Int!): Sweater
+    addSweater(name: String!, creater: String!, description: String!, image: String!, price: Int!, tag: [ID]!): Sweater
+    updateUser(username: String, email: String, password: String): User
+    updateSweater(name: String!, description: String, price: Int, tag: [ID]): Sweater
     login(email: String!, password: String!): Auth
   }
 `;

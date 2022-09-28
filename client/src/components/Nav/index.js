@@ -9,7 +9,7 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/orderHistory">
+            <Link to="/profile">
               Order History
             </Link>
           </li>
@@ -43,8 +43,8 @@ function Nav() {
     <header className="flex-row px-1">
       <h1>
         <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
+          <img style={{ width: 60, height: 60 }} src="https://user-images.githubusercontent.com/108953743/192822089-c7dec81a-cf0d-4bb0-8b26-df726df2f8a6.png" aria-label="shopping bag"></img>
+          Sweater Season
         </Link>
       </h1>
 

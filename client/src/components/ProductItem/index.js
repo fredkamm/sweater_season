@@ -42,7 +42,7 @@ function ProductItem(item) {
         <Card.Img variant="top" src={`/images/${image}`} />
       </Link>
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>Card Title {name} </Card.Title>
         <Card.Text>
           <div>
             <div>

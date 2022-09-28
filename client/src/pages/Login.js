@@ -37,7 +37,7 @@ function Login(props) {
       <Link to="/signup">← Go to Signup</Link>
       <h2>Login</h2>
       <Form onSubmit={handleFormSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             placeholder="youremail@test.com"
@@ -51,7 +51,7 @@ function Login(props) {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
             placeholder="******"
@@ -61,7 +61,11 @@ function Login(props) {
             onChange={handleChange}
           />
         </Form.Group>
-
+        {error ? (
+          <div>
+            <p className="error-text">Email or password are incorrect</p>
+          </div>
+        ) : null}
         <Button variant="primary" type="submit">
           Submit
         </Button>

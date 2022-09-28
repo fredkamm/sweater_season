@@ -60,14 +60,14 @@ tag
       const { sweaters } = await order.populate('sweaters');
 
       for (let i = 0; i < sweaters.length; i++) {
-        const sweater = await stripe.sweaters.create({
+        const sweater = await stripe.products.create({
           name: sweaters[i].name,
           description: sweaters[i].description,
           images: [`${url}/images/${sweaters[i].image}`]
         });
 
         const price = await stripe.prices.create({
-          sweater: sweater.id,
+          product: sweater.id,
           unit_amount: sweaters[i].price * 100,
           currency: 'usd',
         });

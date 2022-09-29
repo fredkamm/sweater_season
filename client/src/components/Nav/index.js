@@ -48,7 +48,7 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h1 className="title-text">
         <Link to="/">
           <img style={{ width: 60, height: 60 }} src="https://user-images.githubusercontent.com/108953743/192822089-c7dec81a-cf0d-4bb0-8b26-df726df2f8a6.png" aria-label="shopping bag"></img>
           Sweater Season

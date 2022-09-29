@@ -6,11 +6,10 @@ import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
   REMOVE_FROM_CART,
-  UPDATE_CART_QUANTITY,
   ADD_TO_CART,
-  UPDATE_PRODUCTS,
+  UPDATE_SWEATERS,
 } from '../utils/actions';
-import { QUERY_PRODUCTS } from '../utils/queries';
+import { QUERY_SWEATERS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
 
@@ -18,84 +17,84 @@ function Detail() {
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
 
-  const [currentProduct, setCurrentProduct] = useState({});
+  const [currentSweater, setCurrentSweater] = useState({});
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_SWEATERS);
 
-  const { products, cart } = state;
+  const { sweaters, cart } = state;
 
   useEffect(() => {
     // already in global store
-    if (products.length) {
-      setCurrentProduct(products.find((product) => product._id === id));
+    if (sweaters.length) {
+      setCurrentSweater(sweaters.find((sweater) => sweater._id === id));
     }
     // retrieved from server
     else if (data) {
       dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
+        type: UPDATE_SWEATERS,
+        sweaters: data.sweaters,
       });
 
-      data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
+      data.sweaters.forEach((sweater) => {
+        idbPromise('sweaters', 'put', sweater);
       });
     }
     // get cache from idb
     else if (!loading) {
-      idbPromise('products', 'get').then((indexedProducts) => {
+      idbPromise('sweaters', 'get').then((indexedSweaters) => {
         dispatch({
-          type: UPDATE_PRODUCTS,
-          products: indexedProducts,
+          type: UPDATE_SWEATERS,
+          sweaters: indexedSweaters,
         });
       });
     }
-  }, [products, data, loading, dispatch, id]);
+  }, [sweaters, data, loading, dispatch, id]);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
-    if (itemInCart) {
-      dispatch({
-        type: UPDATE_CART_QUANTITY,
-        _id: id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-      });
-      idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-      });
-    } else {
+    // if (itemInCart) {
+    //   dispatch({
+    //     type: UPDATE_CART_QUANTITY,
+    //     _id: id,
+    //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+    //   });
+    //   idbPromise('cart', 'put', {
+    //     ...itemInCart,
+    //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+    //   });
+    // } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentProduct, purchaseQuantity: 1 },
+        sweater: { ...currentSweater, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
-    }
+      idbPromise('cart', 'put', { ...currentSweater, purchaseQuantity: 1 });
+    // }
   };
 
   const removeFromCart = () => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: currentProduct._id,
+      _id: currentSweater._id,
     });
 
-    idbPromise('cart', 'delete', { ...currentProduct });
+    idbPromise('cart', 'delete', { ...currentSweater });
   };
 
   return (
     <>
-      {currentProduct && cart ? (
+      {currentSweater && cart ? (
         <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
+          <Link to="/">← Back to Sweaters</Link>
 
-          <h2>{currentProduct.name}</h2>
+          <h2>{currentSweater.name}</h2>
 
-          <p>{currentProduct.description}</p>
+          <p>{currentSweater.description}</p>
 
           <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
+            <strong>Price:</strong>${currentSweater.price}{' '}
             <button onClick={addToCart}>Add to Cart</button>
             <button
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
+              disabled={!cart.find((p) => p._id === currentSweater._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
@@ -103,8 +102,8 @@ function Detail() {
           </p>
 
           <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
+            src={`/images/${currentSweater.image}`}
+            alt={currentSweater.name}
           />
         </div>
       ) : null}

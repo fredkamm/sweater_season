@@ -2,49 +2,49 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import {
-  UPDATE_CATEGORIES,
-  UPDATE_CURRENT_CATEGORY,
+  UPDATE_TAGS,
+  UPDATE_CURRENT_TAG,
 } from '../../utils/actions';
-import { QUERY_CATEGORIES } from '../../utils/queries';
+import { QUERY_TAGS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
-function CategoryMenu() {
+function TagMenu() {
   const [state, dispatch] = useStoreContext();
 
-  const { categories } = state;
+  const { tags } = state;
 
-  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+  const { loading, data: tagData } = useQuery(QUERY_TAGS);
 
   useEffect(() => {
-    if (categoryData) {
+    if (tagData) {
       dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: categoryData.categories,
+        type: UPDATE_TAGS,
+        tags: tagData.tags,
       });
-      categoryData.categories.forEach((category) => {
-        idbPromise('categories', 'put', category);
+      tagData.tags.forEach((tag) => {
+        idbPromise('tags', 'put', tag);
       });
     } else if (!loading) {
-      idbPromise('categories', 'get').then((categories) => {
+      idbPromise('tags', 'get').then((tags) => {
         dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categories,
+          type: UPDATE_TAGS,
+          tags: tags,
         });
       });
     }
-  }, [categoryData, loading, dispatch]);
+  }, [tagData, loading, dispatch]);
 
   const handleClick = (id) => {
     dispatch({
-      type: UPDATE_CURRENT_CATEGORY,
-      currentCategory: id,
+      type: UPDATE_CURRENT_TAG,
+      currentTag: id,
     });
   };
 
   return (
     <div>
-      <h2>Choose a Category:</h2>
-      {categories.map((item) => (
+      <h2>Choose a Tag:</h2>
+      {tags.map((item) => (
         <button
           key={item._id}
           onClick={() => {
@@ -58,4 +58,4 @@ function CategoryMenu() {
   );
 }
 
-export default CategoryMenu;
+export default TagMenu;

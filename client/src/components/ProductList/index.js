@@ -51,7 +51,7 @@ function SweaterList() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
+      <h2>Our Sweaters:</h2>
       {state.sweaters.length ? (
         <div className="flex-row">
           {filterSweaters().map((sweater) => (
@@ -61,7 +61,7 @@ function SweaterList() {
               image={sweater.image}
               name={sweater.name}
               price={sweater.price}
-              description ={sweater.description}
+              description={sweater.description}
             />
           ))}
         </div>

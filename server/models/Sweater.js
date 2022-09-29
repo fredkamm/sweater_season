@@ -8,7 +8,7 @@ const sweaterSchema = new Schema({
     required: true,
     trim: true
   },
-  creater: {
+  creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true

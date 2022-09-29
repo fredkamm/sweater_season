@@ -5,7 +5,7 @@ export const QUERY_SWEATERS = gql`
     sweaters(tag: $tag) {
       _id
       name
-      creater
+      creator
       description
       price
       image
@@ -56,7 +56,7 @@ export const QUERY_USER = gql`
         sweaters {
           _id
           name
-          creater
+          creator
           description
           price
           image

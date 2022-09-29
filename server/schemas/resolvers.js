@@ -107,9 +107,9 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    addSweater: async (parent, { name, creater, description, image, price, tag }, context) => {
+    addSweater: async (parent, { name, creator, description, image, price, tag }, context) => {
       if (context.user) {
-        return await Sweater.create({ name, creater, description, image, price, tag });
+        return await Sweater.create({ name, creator, description, image, price, tag });
       }
 
       throw new AuthenticationError('Not logged in');

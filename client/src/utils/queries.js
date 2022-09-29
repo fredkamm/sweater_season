@@ -57,7 +57,7 @@ export const QUERY_USER = gql`
         sweaters {
           _id
           name
-          creater
+          creator
           description
           price
           image

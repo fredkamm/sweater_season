@@ -85,7 +85,7 @@ db.once('open', async () => {
     },
   ]);
 
-  console.log('products seeded');
+  console.log('sweaters seeded');
 
   process.exit();
 });

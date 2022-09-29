@@ -8,10 +8,10 @@ import { idbPromise } from "../../utils/helpers";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function ProductItem(item) {
+function ProductItem(sweaters) {
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, description } = item;
+  const { image, name, _id, price, description } = sweaters;
 
   const { cart } = state;
 
@@ -30,9 +30,9 @@ function ProductItem(item) {
     // } else {
       dispatch({
         type: ADD_TO_CART,
-        sweater: { ...item, purchaseQuantity: 1 },
+        sweater: { ...sweaters, purchaseQuantity: 1 },
       });
-      idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
+      idbPromise("cart", "put", { ...sweaters, purchaseQuantity: 1 });
     // }
   };
 

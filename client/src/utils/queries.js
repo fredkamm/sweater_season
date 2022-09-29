@@ -26,16 +26,13 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_SWEATERS = gql`
-  {
+query GetAllSweaters{
     sweaters {
       _id
       name
       description
+      image
       price
-      quantity
-      tag {
-        name
-      }
     }
   }
 `;

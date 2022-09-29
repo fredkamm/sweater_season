@@ -43,14 +43,10 @@ function ProductItem(props) {
         <Card.Img variant="top" src={`/images/${image}`} />
       </Link>
       <Card.Body>
-        <Card.Title>Card Title {name} </Card.Title>
+        <Card.Title>{name} </Card.Title>
         <Card.Text>
-          <div>
-            <div>
               {description}
-            </div>
-            <span>${price}</span>
-          </div>
+            <span><br></br>${price}</span>
         </Card.Text>
         <Button variant="primary" onClick={addToCart}>
           Add to cart

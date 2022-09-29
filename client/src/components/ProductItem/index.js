@@ -29,11 +29,11 @@ function ProductItem(props) {
     //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
     //   });
     // } else {
-      // dispatch({
-      //   type: ADD_TO_CART,
-      //   sweater: { ...sweaters, purchaseQuantity: 1 },
-      // });
-      // idbPromise("cart", "put", { ...sweaters, purchaseQuantity: 1 });
+    //   dispatch({
+    //     type: ADD_TO_CART,
+    //     sweater: { ...sweaters, purchaseQuantity: 1 },
+    //   });
+    //   idbPromise("cart", "put", { ...sweaters, purchaseQuantity: 1 });
     // }
   };
 

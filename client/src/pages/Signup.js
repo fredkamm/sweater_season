@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ email: "", password: "", username: "" });
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
@@ -38,6 +38,7 @@ function Signup(props) {
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
+            name="username"
             placeholder="Bob12345"
             id="username"
             onChange={handleChange}
@@ -48,6 +49,7 @@ function Signup(props) {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             placeholder="bob12345@gmaill.com"
             id="email"
             onChange={handleChange}
@@ -61,6 +63,7 @@ function Signup(props) {
           <Form.Label htmlFor="pwd">Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
             placeholder="*******"
             id="pwd"
             onChange={handleChange}

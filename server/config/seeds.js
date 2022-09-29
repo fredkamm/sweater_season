@@ -49,7 +49,7 @@ db.once('open', async () => {
       image: 'christmas-sweater-light-up.jpg',
       tag: [tags[2]._id, tags[7]._id], 
       price: 35,
-      creater: granny._id
+      creator: granny._id
     },
     {
       name: 'Spooky Sweater',
@@ -57,7 +57,7 @@ db.once('open', async () => {
       image: 'halloween-skull-sweater.jpg',
       tag: [tags[0]._id, tags[6]._id], 
       price: 50,
-      creater: granny._id
+      creator: granny._id
     },
     {
       name: 'Black and White Sweater Vest',
@@ -65,7 +65,7 @@ db.once('open', async () => {
       image: 'black-white-sweater-vest.jpg',
       tag: [tags[9]._id, tags[11]._id], 
       price: 30,
-      creater: KnitMaster._id
+      creator: KnitMaster._id
     },
     {
       name: 'Earthy Sweater',
@@ -73,7 +73,7 @@ db.once('open', async () => {
       image: 'earthy-animal-sweater.jpg',
       tag: [tags[4]._id, tags[6]._id, tags[12]._id], 
       price: 54,
-      creater: KnitMaster._id
+      creator: KnitMaster._id
     },
     {
       name: 'Blue Turtleneck',
@@ -81,7 +81,7 @@ db.once('open', async () => {
       image: 'blue-turtleneck.jpg',
       tag: [tags[7]._id, tags[10]._id], 
       price: 199,
-      creater: KnitMaster._id
+      creator: KnitMaster._id
     },
   ]);
 

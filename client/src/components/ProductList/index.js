@@ -22,21 +22,17 @@ function SweaterList() {
         type: UPDATE_SWEATERS,
         sweaters: data.sweaters,
       });
-      // data.sweaters.forEach((sweater) => {
-      //   idbPromise('sweaters', 'put', sweater);
-      // });
-    } 
-    if(error){
-      console.log(error);
+      data.sweaters.forEach((sweater) => {
+        idbPromise('sweaters', 'put', sweater);
+      });
+    } else if (!loading) {
+      idbPromise('sweaters', 'get').then((sweaters) => {
+        dispatch({
+          type: UPDATE_SWEATERS,
+          sweaters: sweaters,
+        });
+      });
     }
-    // else if (!loading) {
-    //   idbPromise('sweaters', 'get').then((sweaters) => {
-    //     dispatch({
-    //       type: UPDATE_SWEATERS,
-    //       sweaters: sweaters,
-    //     });
-    //   });
-    // }
   }, [data, loading, dispatch]);
 
   function filterSweaters() {

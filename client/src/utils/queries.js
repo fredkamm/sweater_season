@@ -33,6 +33,7 @@ query GetAllSweaters{
       description
       image
       price
+      creator
     }
   }
 `;

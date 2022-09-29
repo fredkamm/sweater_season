@@ -1,8 +1,8 @@
 :root {
   --primary: #232F3E;
   --secondary: #F3A847;
-  --tertiary: #B12704;
-  --light: #fafafa;
+  --tertiary: #D05E5E;
+  --light: #FFFFFF;
   --dark: #272f32;
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
@@ -42,6 +42,7 @@ h6 {
 
 h1 {
   font-size: 2.25rem;
+  color: var(--tertiary);
 }
 
 h2 {
@@ -70,22 +71,23 @@ p {
 }
 
 a {
-  color: var(--tertiary);
+  /* color: var(--tertiary); */
   text-decoration: none;
   font-weight: bold;
 }
 
-a:hover {
-  text-decoration: underline;
-}
+
+
 
 header {
-  background: var(--primary);
+  background: var(--light);
 }
 
 header a {
-  color: var(--light);
+  color: var(--tertiary);
+  text-decoration: none;
 }
+
 
 button {
   font-size: 1rem;
@@ -144,6 +146,12 @@ input:focus {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
+  list-style: none;
+  color: var(--tertiary);
+}
+
+.sign-up {
+  color: var(--dark);
 }
 
 .space-between {
@@ -157,6 +165,7 @@ input:focus {
 .mx-1 {
   margin-right: var(--spacing-one);
   margin-left: var(--spacing-one);
+  margin-top: var(--spacing-two);
 }
 
 .mx-2 {
@@ -167,6 +176,7 @@ input:focus {
 .my-1 {
   margin-top: var(--spacing-one);
   margin-bottom: var(--spacing-one);
+  
 }
 
 .my-2 {

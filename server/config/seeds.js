@@ -5,33 +5,33 @@ db.once('open', async () => {
   await Tag.deleteMany();
 
   const tags = await Tag.insertMany([
-    { name: 'Holloween' },
-    { name: 'Thanksgiving' },
-    { name: 'Christmas' },
+    { name: 'Holloween' }, // 0
+    { name: 'Thanksgiving' }, 
+    { name: 'Christmas' }, // 2
     { name: 'Hanukkah'},
-    { name: 'Fall' },
+    { name: 'Fall' }, // 4
     { name: 'Winter' },
-    { name: 'Cardigan' },
+    { name: 'Cardigan' }, // 6
     { name: 'Pullover' },
-    { name: 'Crewneck' },
+    { name: 'Crewneck' }, // 8
     { name: 'V-Neck' },
-    { name: 'Turtleneck' },
+    { name: 'Turtleneck' }, // 10
     { name: 'Sweater Vest' },
-    { name: 'Animal'}
+    { name: 'Animal'} // 12
   ]);
 
   console.log('Tags seeded');
 
   await User.deleteMany();
 
-  await User.create({
+  const granny = await User.create({
     username: 'granny',
     email: 'grannysmith@testmail.com',
     password: 'password12345',
     seller: true
   });
 
-  await User.create({
+  const KnitMaster = await User.create({
     username: 'KnitMaster',
     email: 'knitmaster@testmail.com',
     password: 'password54321',
@@ -47,41 +47,41 @@ db.once('open', async () => {
       name: 'Christmas Time',
       description: 'Christmas Sweater with lights Size=Medium',
       image: 'christmas-sweater-light-up.jpg',
-      tag: ['Chirstmas', 'Pullover'],
+      tag: [tags[2]._id, tags[7]._id], 
       price: 35,
-      creater: 'granny'
+      creater: granny._id
     },
     {
       name: 'Spooky Sweater',
       description: 'Halloween Skull Cardigan Size=Large',
       image: 'halloween-skull-sweater.jpg',
-      tag: ['Halloween', 'Cardigan'],
+      tag: [tags[0]._id, tags[6]._id], 
       price: 50,
-      creater: 'granny'
+      creater: granny._id
     },
     {
       name: 'Black and White Sweater Vest',
       description: 'Medium black and white sweater vest with v-neck',
       image: 'black-white-sweater-vest.jpg',
-      tag: ['Sweater Vest', 'V-Neck'],
+      tag: [tags[9]._id, tags[11]._id], 
       price: 30,
-      creater: 'KnitMaster'
+      creater: KnitMaster._id
     },
     {
       name: 'Earthy Sweater',
       description: ' XL Fall sweater with squirel, rabbit, and alligator',
       image: 'earthy-animal-sweater.jpg',
-      tag: ['Cardigan', 'Fall', 'Animal'],
+      tag: [tags[4]._id, tags[6]._id, tags[12]._id], 
       price: 54,
-      creater: 'KnitMaster'
+      creater: KnitMaster._id
     },
     {
       name: 'Blue Turtleneck',
       description: 'Medium sweater that is very warm and has the THICKEST turtleneck',
       image: 'blue-turtleneck.jpg',
-      tag: ['Turtleneck', 'Pullover'],
+      tag: [tags[7]._id, tags[10]._id], 
       price: 199,
-      creater: 'KnitMaster'
+      creater: KnitMaster._id
     },
   ]);
 

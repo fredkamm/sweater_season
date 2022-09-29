@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { pluralize } from "../../utils/helpers";
+// import { pluralize } from "../../utils/helpers";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
@@ -8,10 +8,11 @@ import { idbPromise } from "../../utils/helpers";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function ProductItem(item) {
+function ProductItem(props) {
+  console.log(props);
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, description } = item;
+  const { image, name, _id, price, description } = props;
 
   const { cart } = state;
 
@@ -28,11 +29,11 @@ function ProductItem(item) {
     //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
     //   });
     // } else {
-      dispatch({
-        type: ADD_TO_CART,
-        sweater: { ...item, purchaseQuantity: 1 },
-      });
-      idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
+      // dispatch({
+      //   type: ADD_TO_CART,
+      //   sweater: { ...sweaters, purchaseQuantity: 1 },
+      // });
+      // idbPromise("cart", "put", { ...sweaters, purchaseQuantity: 1 });
     // }
   };
 

@@ -22,11 +22,9 @@ export const ADD_ORDER = gql`
         description
         image
         price
-        tag [
-          {
+        tag {
           name
           }
-        ]
         sold
       }
     }

@@ -70,9 +70,7 @@ const Cart = () => {
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
+        <img style={{ width: 35, height: 30 }} src="https://user-images.githubusercontent.com/108953743/193062101-f7d7ab85-d08b-40c0-b809-bdb50339a14e.png" aria-label="trash"></img>
       </div>
     );
   }
@@ -102,9 +100,6 @@ const Cart = () => {
         </div>
       ) : (
         <h3>
-          <span role="img" aria-label="shocked">
-            😱
-          </span>
           You haven't added anything to your cart yet!
         </h3>
       )}

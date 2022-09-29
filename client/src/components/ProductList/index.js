@@ -3,7 +3,7 @@ import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_SWEATERS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
-import { QUERY_SWEATERS } from '../../utils/queries';
+import { QUERY_ALL_SWEATERS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
@@ -12,25 +12,31 @@ function SweaterList() {
 
   const { currentTag } = state;
 
-  const { loading, data } = useQuery(QUERY_SWEATERS);
+  const { loading, data, error } = useQuery(QUERY_ALL_SWEATERS);
 
   useEffect(() => {
+    // console.log(data);
     if (data) {
+      console.log("here", data);
       dispatch({
         type: UPDATE_SWEATERS,
         sweaters: data.sweaters,
       });
-      data.sweaters.forEach((sweater) => {
-        idbPromise('sweaters', 'put', sweater);
-      });
-    } else if (!loading) {
-      idbPromise('sweaters', 'get').then((sweaters) => {
-        dispatch({
-          type: UPDATE_SWEATERS,
-          sweaters: sweaters,
-        });
-      });
+      // data.sweaters.forEach((sweater) => {
+      //   idbPromise('sweaters', 'put', sweater);
+      // });
+    } 
+    if(error){
+      console.log(error);
     }
+    // else if (!loading) {
+    //   idbPromise('sweaters', 'get').then((sweaters) => {
+    //     dispatch({
+    //       type: UPDATE_SWEATERS,
+    //       sweaters: sweaters,
+    //     });
+    //   });
+    // }
   }, [data, loading, dispatch]);
 
   function filterSweaters() {

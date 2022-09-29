@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import {
-  UPDATE_PRODUCTS,
+  UPDATE_SWEATERS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_TAGS,
@@ -11,22 +11,22 @@ import {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_PRODUCTS:
+    case UPDATE_SWEATERS:
       return {
         ...state,
-        products: [...action.products],
+        sweaters: [...action.sweaters],
       };
 
     case ADD_TO_CART:
       return {
         ...state,
         cartOpen: true,
-        cart: [...state.cart, action.product],
+        cart: [...state.cart, action.sweater],
       };
 
     case REMOVE_FROM_CART:
-      let newState = state.cart.filter(product => {
-        return product._id !== action._id;
+      let newState = state.cart.filter(sweater => {
+        return sweater._id !== action._id;
       });
 
       return {
@@ -51,13 +51,13 @@ export const reducer = (state, action) => {
     case UPDATE_TAGS:
       return {
         ...state,
-        categories: [...action.categories],
+        tags: [...action.tags],
       };
 
     case UPDATE_CURRENT_TAG:
       return {
         ...state,
-        currentCategory: action.currentCategory
+        currentTag: action.currentTag
       }
 
     default:

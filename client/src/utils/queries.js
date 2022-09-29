@@ -25,9 +25,9 @@ export const QUERY_CHECKOUT = gql`
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
+export const QUERY_ALL_SWEATERS = gql`
   {
-    products {
+    sweaters {
       _id
       name
       description

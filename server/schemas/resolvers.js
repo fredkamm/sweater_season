@@ -1,7 +1,8 @@
+require ('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Sweater, Tag, Order } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('SERCRETSTRIPE');
+const stripe = require('stripe')(process.env.SECRETSTRIPE);
 
 const resolvers = {
   Query: {
@@ -53,11 +54,12 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
+      console.log(stripe);
       const order = new Order({ sweaters: args.sweaters });
       const line_items = [];
 
       const { sweaters } = await order.populate('sweaters');
-
+      console.log(sweaters);
       for (let i = 0; i < sweaters.length; i++) {
         const sweater = await stripe.products.create({
           name: sweaters[i].name,

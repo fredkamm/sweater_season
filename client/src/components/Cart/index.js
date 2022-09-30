@@ -55,16 +55,17 @@ const Cart = () => {
   // Add each item id to the productIds array and then invoke the getCheckout query passing an object containing the id for all our products
   function submitCheckout() {
     const sweaterIds = [];
-
+      console.log("1");
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         sweaterIds.push(item._id);
       }
     });
-
+    console.log("2");
     getCheckout({
       variables: { sweaters: sweaterIds },
     });
+    console.log("3");
   }
 
   if (!state.cartOpen) {

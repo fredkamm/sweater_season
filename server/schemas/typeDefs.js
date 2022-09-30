@@ -9,11 +9,11 @@ const typeDefs = gql`
   type Sweater {
     _id: ID
     name: String
-    creator: String
+    creator: User
     description: String
     image: String
     price: Float
-    tags: [Tag]
+    tag: [Tag]
     sold: Boolean
   }
 

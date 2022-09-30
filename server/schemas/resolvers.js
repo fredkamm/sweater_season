@@ -20,7 +20,7 @@ const resolvers = {
         };
       }
 
-      return await Sweater.find(params).populate('tag');
+      return await Sweater.find(params).populate('tag').populate('creator');
     },
     sweater: async (parent, { _id }) => {
       return await Sweater.findById(_id).populate('tag');

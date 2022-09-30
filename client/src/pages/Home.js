@@ -1,12 +1,12 @@
 import React from "react";
 import SweaterList from "../components/ProductList";
-import CategoryMenu from "../components/CategoryMenu";
+import TagMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
 
 const Home = () => {
   return (
     <div className="container">
-      {/* <CategoryMenu /> */}
+      {/* <TagMenu /> */}
       <SweaterList />
       <Cart />
     </div>

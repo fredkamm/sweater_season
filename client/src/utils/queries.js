@@ -33,7 +33,10 @@ query GetAllSweaters{
       description
       image
       price
-      creator
+      creator {
+        username
+        email
+      }
     }
   }
 `;

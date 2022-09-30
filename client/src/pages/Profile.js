@@ -1,52 +1,83 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
 
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+export default function Upload() {
+    const [fileInputState, setFileInputState] = useState('');
+    const [previewSource, setPreviewSource] = useState('');
+    const [selectedFile, setSelectedFile] = useState();
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errMsg, setErrMsg] = useState('');
 
-function Profile() {
-  const { data } = useQuery(QUERY_USER);
-  let user;
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0];
+        previewFile(file);
+        setSelectedFile(file);
+        setFileInputState(e.target.value);
+    };
 
-  if (data) {
-    user = data.user;
-  }
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    };
 
-  return (
-    <>
-      <div className="container my-1">
-        <Link to="/">← Back to Sweaters</Link>
+    const handleSubmitFile = (e) => {
+      console.log('hi');
+        e.preventDefault();
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            uploadImage(reader.result);
+        };
+        reader.onerror = () => {
+            console.error('AHHHHHHHH!!');
+            setErrMsg('something went wrong!');
+        };
+    };
 
-        {user ? (
-          <>
-            <h2>
-              Order History for {user.firstName} {user.lastName}
-            </h2>
-            {user.orders.map((order) => (
-              <div key={order._id} className="my-2">
-                <h3>
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
-                <div className="flex-row">
-                  {order.sweaters.map(({ _id, image, name, price }, index) => (
-                    <div key={index} className="card px-1 py-1">
-                      <Link to={`/profile/${_id}`}>
-                        <img alt={name} src={`/images/${image}`} />
-                        <p>{name}</p>
-                      </Link>
-                      <div>
-                        <span>${price}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </>
-        ) : null}
-      </div>
-    </>
-  );
+    const uploadImage = async (base64EncodedImage) => {
+        try {
+            await fetch('/api/upload', {
+                method: 'POST',
+                body: JSON.stringify({ data: base64EncodedImage }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            setFileInputState('');
+            setPreviewSource('');
+            setSuccessMsg('Image uploaded successfully');
+        } catch (err) {
+            console.error(err);
+            setErrMsg('Something went wrong!');
+        }
+    };
+    return (
+        <div>
+            <h1 className="title">Upload a Sweater!</h1>
+            <Alert msg={errMsg} type="danger" />
+            <Alert msg={successMsg} type="success" />
+            <form onSubmit={handleSubmitFile} className="form">
+                <input
+                    id="fileInput"
+                    type="file"
+                    name="image"
+                    onChange={handleFileInputChange}
+                    value={fileInputState}
+                    className="form-input"
+                />
+                <button className="btn" type="submit">
+                    Submit
+                </button>
+            </form>
+            {previewSource && (
+                <img
+                    src={previewSource}
+                    alt="chosen"
+                    style={{ height: '300px' }}
+                />
+            )}
+        </div>
+    );
 }
-
-export default Profile;

@@ -12,10 +12,9 @@ function SweaterList() {
 
   const { currentTag } = state;
 
-  const { loading, data, error } = useQuery(QUERY_ALL_SWEATERS);
+  const { loading, data } = useQuery(QUERY_ALL_SWEATERS);
 
   useEffect(() => {
-    // console.log(data);
     if (data) {
       console.log("here", data);
       dispatch({

@@ -89,6 +89,8 @@ db.once('open', async () => {
 
   const KnitMaster2 = await User.findOneAndUpdate({'username': 'KnitMaster'}, {'shop': [sweaters[2]._id, sweaters[3]._id, sweaters[4]._id]}, {new: true})
 
+console.log(granny2);
+
   console.log('sweaters seeded');
 
   process.exit();

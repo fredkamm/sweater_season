@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
+import SweaterList from "../components/ProductList";
 
 export default function Upload() {
     const [fileInputState, setFileInputState] = useState('');
@@ -24,7 +25,7 @@ export default function Upload() {
     };
 
     const handleSubmitFile = (e) => {
-      console.log('hi');
+        console.log('hi');
         e.preventDefault();
         if (!selectedFile) return;
         const reader = new FileReader();
@@ -55,6 +56,7 @@ export default function Upload() {
     };
     return (
         <div>
+            <SweaterList />
             <h1 className="title">Upload a Sweater!</h1>
             <Alert msg={errMsg} type="danger" />
             <Alert msg={successMsg} type="success" />

@@ -12,7 +12,7 @@ function ProductItem(props) {
   console.log(props);
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, description } = props;
+  const { image, name, _id, creator, price, description } = props;
 
   const { cart } = state;
 
@@ -38,15 +38,15 @@ function ProductItem(props) {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ margin: 5, width: "18rem" }}>
       <Link to={`/sweaters/${_id}`}>
-        <Card.Img variant="top" src={`/images/${image}`} />
+        <Card.Img variant="top" src={`/images/${image}`} style={{height: "24rem", objectFit: "cover"}}/>
       </Link>
       <Card.Body>
         <Card.Title>{name} </Card.Title>
         <Card.Text>
               {description}
-            <span><br></br>${price}</span>
+            <span><br></br>${price}<br></br>Creator: {creator}</span>
         </Card.Text>
         <Button variant="primary" onClick={addToCart}>
           Add to cart

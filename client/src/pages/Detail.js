@@ -52,7 +52,7 @@ function Detail() {
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
-    // if (itemInCart) {
+    if (itemInCart) {
     //   dispatch({
     //     type: UPDATE_CART_QUANTITY,
     //     _id: id,
@@ -62,7 +62,8 @@ function Detail() {
     //     ...itemInCart,
     //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
     //   });
-    // } else {
+    } 
+    // else {
       dispatch({
         type: ADD_TO_CART,
         sweater: { ...currentSweater, purchaseQuantity: 1 },

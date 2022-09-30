@@ -85,6 +85,10 @@ db.once('open', async () => {
     },
   ]);
 
+  const granny2 = await User.findOneAndUpdate({'username': 'granny'}, {'shop': [sweaters[0]._id, sweaters[1]._id]}, {new: true})
+
+  const KnitMaster2 = await User.findOneAndUpdate({'username': 'KnitMaster'}, {'shop': [sweaters[2]._id, sweaters[3]._id, sweaters[4]._id]}, {new: true})
+
   console.log('sweaters seeded');
 
   process.exit();

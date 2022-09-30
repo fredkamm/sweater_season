@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-function OrderHistory() {
+function Profile() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -30,7 +30,7 @@ function OrderHistory() {
                 <div className="flex-row">
                   {order.sweaters.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
-                      <Link to={`/sweaters/${_id}`}>
+                      <Link to={`/profile/${_id}`}>
                         <img alt={name} src={`/images/${image}`} />
                         <p>{name}</p>
                       </Link>
@@ -49,4 +49,4 @@ function OrderHistory() {
   );
 }
 
-export default OrderHistory;
+export default Profile;

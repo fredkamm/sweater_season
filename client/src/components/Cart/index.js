@@ -12,7 +12,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe('pk_test_51Lnk93IqoKLK64BVcKM3WX77oLhMxoiLrdKTf6BLM547rj3KpNw0UZg9jIBATfg6K1WluSGTIpKvne3lJV9PFEkI00Y94RUhvq');
+const stripePromise = loadStripe('pk_test_51LnkLHLNSMmSC34MhAnU5jjgtfttWaKzyAhHtegkzRFaPzFpuhzMdtitjOTzYZFD5hPvqZsnkX4CISnADbFRuNPs00E4DATg8q');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();

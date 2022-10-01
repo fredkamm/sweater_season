@@ -61,7 +61,6 @@ function SweaterList() {
 
   return (
     <div className="my-2">
-      <h2>Our Sweaters:</h2>
       {state.sweaters.length ? (
         <div className="flex-row">
           {filterSweaters().map((sweater) => (

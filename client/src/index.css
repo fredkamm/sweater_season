@@ -17,6 +17,8 @@
 html,
 body {
   min-height: 100%;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(178,65,24,0.1577818627450981) 85%);
 }
 
 body {
@@ -80,6 +82,7 @@ a {
 
 header {
   background: var(--light);
+  border-bottom: 1.5px solid black;
 }
 
 header a {

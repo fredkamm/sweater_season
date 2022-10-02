@@ -9,6 +9,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART } from '../../utils/actions';
 import './style.css';
 import dotenv from 'dotenv';
+import CloseButton from 'react-bootstrap/CloseButton';
 dotenv.config();
 
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
@@ -84,9 +85,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
-      </div>
+      < CloseButton className="close" onClick={toggleCart}/>
       <h2>Shopping Cart</h2>
       {state.cart.length ? (
         <div>

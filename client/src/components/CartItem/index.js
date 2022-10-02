@@ -2,6 +2,7 @@ import React from 'react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import CloseButton from 'react-bootstrap/CloseButton';
 
 const CartItem = ({ item }) => {
 
@@ -28,13 +29,7 @@ const CartItem = ({ item }) => {
       <div>
         <div>{item.name}, ${item.price}</div>
         <div>
-          <span
-            role="img"
-            aria-label="trash"
-            onClick={() => removeFromCart(item)}
-          >
-            🗑️
-          </span>
+          <CloseButton onClick={() => removeFromCart(item)} />
         </div>
       </div>
     </div>

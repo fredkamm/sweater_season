@@ -92,6 +92,7 @@ db.once('open', async () => {
 console.log(granny2);
 
   console.log('sweaters seeded');
+  console.log(granny2);
 
   process.exit();
 });

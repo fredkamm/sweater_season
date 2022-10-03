@@ -238,7 +238,7 @@ input:focus {
 .inputData {
   display: flex;
   margin-top: 1rem;
-  margin-right: 65%;
+  margin-right: 60%;
   padding-top: 2rem;
   border: 1px solid #232F3E;
 }

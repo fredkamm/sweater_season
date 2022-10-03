@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import Alert from 'react-bootstrap/Alert';
+import SweaterList from "../components/ProductList";
+
+import Button from "react-bootstrap/Button";
 
 export default function Upload() {
     const [fileInputState, setFileInputState] = useState('');
@@ -24,7 +26,7 @@ export default function Upload() {
     };
 
     const handleSubmitFile = (e) => {
-      console.log('hi');
+        console.log('hi');
         e.preventDefault();
         if (!selectedFile) return;
         const reader = new FileReader();
@@ -53,11 +55,14 @@ export default function Upload() {
             setErrMsg('Something went wrong!');
         }
     };
+
+    const refreshPage = () => {
+        window.location.reload();
+    } 
+
     return (
-        <div>
+        <div className='profile'>
             <h1 className="title">Upload a Sweater!</h1>
-            <Alert msg={errMsg} type="danger" />
-            <Alert msg={successMsg} type="success" />
             <form onSubmit={handleSubmitFile} className="form">
                 <input
                     id="fileInput"
@@ -67,17 +72,50 @@ export default function Upload() {
                     value={fileInputState}
                     className="form-input"
                 />
-                <button className="btn" type="submit">
+                <Button onClick={refreshPage}>
                     Submit
-                </button>
+                </Button>
             </form>
-            {previewSource && (
-                <img
+            <div className='inputData'>
+                <ul>
+                        <span>Title: </span>
+                    <li>
+                        <input
+                        id="fileInput"
+                        type="text"
+                        name="title"
+                        className="form-input"
+                        />
+                    </li>
+                        <span>Description: </span>
+                    <li>
+                        <textarea
+                        id="fileInput"
+                        type="text"
+                        name="title"
+                        className="form-input"
+                        />
+                    </li>
+                        <span>Price: </span>
+                    <li>
+                        <input
+                        id="fileInput"
+                        type="text"
+                        name="title"
+                        className="form-input"
+                        />
+                    </li>
+                </ul>
+                {previewSource && (
+                <img className='renderImg'
                     src={previewSource}
                     alt="chosen"
                     style={{ height: '300px' }}
                 />
             )}
+            </div>
+            <h1>My Sweaters: </h1>
+            <SweaterList />
         </div>
     );
 }

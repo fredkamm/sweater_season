@@ -6,14 +6,20 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ALL_SWEATERS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
+import { useLocation } from 'react-router-dom';
+
+import Auth from '../../utils/auth';
 
 function SweaterList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentTag } = state;
+
+  const location = useLocation();
+  console.log(location);
   
   const { loading, data } = useQuery(QUERY_ALL_SWEATERS);
-
+  
   useEffect(() => {
     if (data) {
       console.log("here", data);
@@ -35,18 +41,26 @@ function SweaterList() {
   }, [data, loading, dispatch]);
 
   function filterSweaters() {
-    if (!currentTag) {
+    if (location.pathname !== '/profile') {
       return state.sweaters;
     }
 
+    console.log(Auth.getProfile().data.email)
+
     return state.sweaters.filter(
-      (sweater) => sweater.tag._id === currentTag
+      (sweater) => sweater.creator.email === Auth.getProfile().data.email
     );
+    // if (!currentTag) {
+    //   return state.sweaters;
+    // }
+
+    // return state.sweaters.filter(
+    //   (sweater) => sweater.tag._id === currentTag
+    // );
   }
 
   return (
     <div className="my-2">
-      <h2>Our Sweaters:</h2>
       {state.sweaters.length ? (
         <div className="flex-row">
           {filterSweaters().map((sweater) => (
@@ -57,6 +71,7 @@ function SweaterList() {
               name={sweater.name}
               price={sweater.price}
               description={sweater.description}
+              creator={sweater.creator.username}
             />
           ))}
         </div>

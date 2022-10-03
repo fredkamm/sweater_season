@@ -8,17 +8,22 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART } from '../../utils/actions';
 import './style.css';
+import dotenv from 'dotenv';
+import CloseButton from 'react-bootstrap/CloseButton';
+dotenv.config();
 
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe('PUBLICSTRIPE');
+const stripePromise = loadStripe('pk_test_51LnkLHLNSMmSC34MhAnU5jjgtfttWaKzyAhHtegkzRFaPzFpuhzMdtitjOTzYZFD5hPvqZsnkX4CISnADbFRuNPs00E4DATg8q');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [getCheckout, { data, error}] = useLazyQuery(QUERY_CHECKOUT);
 
   // We check to see if there is a data object that exists, if so this means that a checkout session was returned from the backend
   // Then we should redirect to the checkout with a reference to our session id
   useEffect(() => {
+    console.log(data);
+    console.log("HELLO", error);
     if (data) {
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
@@ -57,11 +62,13 @@ const Cart = () => {
     const sweaterIds = [];
       console.log("1");
     state.cart.forEach((item) => {
+      console.log(item);
       for (let i = 0; i < item.purchaseQuantity; i++) {
         sweaterIds.push(item._id);
       }
     });
     console.log("2");
+    console.log(sweaterIds);
     getCheckout({
       variables: { sweaters: sweaterIds },
     });
@@ -78,9 +85,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
-      </div>
+      < CloseButton className="close" onClick={toggleCart}/>
       <h2>Shopping Cart</h2>
       {state.cart.length ? (
         <div>

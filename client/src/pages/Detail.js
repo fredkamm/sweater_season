@@ -13,6 +13,8 @@ import { QUERY_SWEATERS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
 
+import Button from 'react-bootstrap/Button';
+
 function Detail() {
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
@@ -93,13 +95,14 @@ function Detail() {
 
           <p>
             <strong>Price:</strong>${currentSweater.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
+            <Button variant="success" onClick={addToCart}>Add to Cart</Button>
+            <Button
+              variant="danger"
               disabled={!cart.find((p) => p._id === currentSweater._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
-            </button>
+            </Button>
           </p>
 
           <img

@@ -11,7 +11,7 @@ function SweaterList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentTag } = state;
-
+  
   const { loading, data } = useQuery(QUERY_ALL_SWEATERS);
 
   useEffect(() => {

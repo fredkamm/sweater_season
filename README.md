@@ -20,26 +20,52 @@ So that I can make money.
 
 ## Installation
 
-Go to <a> https://github.com/fredkamm/sweater_season </a>, copy the SSH key, and clone the git repository.
+Go [here](https://github.com/fredkamm/sweater_season), and clone the repository.  Open a terminal, navigate to the folder you cloned the repo in, and run these commands:
+
+    $ npm install
+    $ npm run seed
+    $ npm run build
+    $ npm run develop
+
+This will spin up a local instance of the app on [Port: 3000](http://localhost:3000/) to test while you are developing.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Try logging in, clicking on product images to see their individual pages, adding/removing from cart.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+These features are complete and functional.
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+## Mockups
+---
+
+### Main Page
+
+![Sweater Season Main Page](./client/public/images/screenshot.png)
+
+### Item Page
+
+![Sweater Season](./client/public/images/item-page.png)
+
+### Cart
+
+![Sweater Season](./client/public/images/cart.png)
+
+---
+
+## Heroku Deployment
+
+**Add Heroku Link Here**
 
 ## Credits
 
-Travis Walborn- <a> https://github.com/NorthernPines </a>
-Juliet Lamond- <a> https://github.com/jlamond37 </a>
-Fred Kamm- <a> https://github.com/fredkamm </a>
-Brian Chase- <a> https://github.com/blchase215 </a>
+### Front-End Team:
 
-=======
-# sweater_season
+[Juliet Lamond](https://github.com/jlamond37)
 
-test
+[Fred Kamm](https://github.com/fredkamm)
+
+### Back-End Team:
+
+[Travis Walborn](https://github.com/NorthernPines)
+
+[Brian Chase](https://github.com/blchase215)
